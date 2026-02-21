@@ -1,0 +1,10 @@
+import PomodoroClock from "@/components/pomodoroClock";
+import { View } from "react-native";
+
+export default function PomodoroScreen() {
+	return (
+		<View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+			<PomodoroClock />
+		</View>
+	);
+}
