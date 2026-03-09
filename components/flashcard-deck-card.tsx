@@ -1,5 +1,6 @@
 // components/flashcard-deck-card.tsx
-import { StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import Animated from "react-native-reanimated";
 import { ThemedText } from "./themed-text";
 
@@ -22,32 +23,37 @@ export default function FlashcardDeckCard({
 	course,
 	size,
 }: FlashcardDeckCardProps) {
+	const router = useRouter();
 	return (
-		<Animated.View
-			style={[
-				styles.base,
-				size === "small" && styles.small,
-				size === "medium" && styles.medium,
-				size === "large" && styles.large,
-				{ backgroundColor: color },
-			]}
-		>
-			{size !== "small" && (
-				<>
-					<ThemedText style={styles.course}>{course}</ThemedText>
-					<ThemedText style={styles.title}>{title}</ThemedText>
-					<Text style={{ fontSize: 72 }}>{icon}</Text>
+		<Pressable onPress={() => router.push("/course/1/1/flashcards")}>
+			<Animated.View
+				style={[
+					styles.base,
+					size === "small" && styles.small,
+					size === "medium" && styles.medium,
+					size === "large" && styles.large,
+					{ backgroundColor: color },
+				]}
+			>
+				{size !== "small" && (
+					<>
+						<ThemedText style={styles.course}>{course}</ThemedText>
+						<ThemedText style={styles.title}>{title}</ThemedText>
+						<Text style={{ fontSize: 72 }}>{icon}</Text>
 
-					<View style={styles.progressTrack}>
-						<View
-							style={[styles.progressFill, { width: `${completion * 100}%` }]}
-						/>
-					</View>
-				</>
-			)}
+						<View style={styles.progressTrack}>
+							<View
+								style={[styles.progressFill, { width: `${completion * 100}%` }]}
+							/>
+						</View>
+					</>
+				)}
 
-			{size === "small" && <ThemedText style={styles.icon}>{icon}</ThemedText>}
-		</Animated.View>
+				{size === "small" && (
+					<ThemedText style={styles.icon}>{icon}</ThemedText>
+				)}
+			</Animated.View>
+		</Pressable>
 	);
 }
 

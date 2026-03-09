@@ -1,22 +1,33 @@
-export function useDatabase() {
-	return {
-		getFlashcardDecks: async () => {
-			async function fetchFlashcardDeck() {
-				const response = await fetch("/api/flashcard-decks");
-				const data = await response.json();
-				return data;
-			}
-			const content = await fetchFlashcardDeck();
-			return content;
-		},
-		getActivities: async (courseId: string | string[]) => {
-			async function fetchActivities() {
-				const response = await fetch(`/api/activities`);
-				const data = await response.json();
-				return data;
-			}
-			const content = await fetchActivities();
-			return content;
-		},
-	};
-}
+export const database = {
+	async getCourses() {
+		const response = await fetch("/api/courses");
+		if (!response.ok) throw new Error("Failed to fetch courses");
+		return response.json();
+	},
+
+	async getFlashcardDecks() {
+		const response = await fetch("/api/flashcard-decks");
+		if (!response.ok) throw new Error("Failed to fetch flashcard decks");
+		return response.json();
+	},
+	async getFlashcards() {
+		const response = await fetch("/api/flashcards");
+		if (!response.ok) throw new Error("Failed to fetch flashcards");
+		return response.json();
+	},
+	async getActivities(courseId: string) {
+		const response = await fetch(`/api/activities?courseId=${courseId}`);
+		if (!response.ok) throw new Error("Failed to fetch activities");
+		return response.json();
+	},
+	async getLessons(courseId: string) {
+		const response = await fetch(`/api/lessons?courseId=${courseId}`);
+		if (!response.ok) throw new Error("Failed to fetch lessons");
+		return response.json();
+	},
+	async getLesson(lessonId: string) {
+		const response = await fetch(`/api/lessons?lessonId=${lessonId}`);
+		if (!response.ok) throw new Error("Failed to fetch lessons");
+		return response.json();
+	},
+};

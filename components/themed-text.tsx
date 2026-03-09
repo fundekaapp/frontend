@@ -26,7 +26,7 @@ export function ThemedText({
 	return (
 		<Text
 			style={[
-				{ color, width: "100%" },
+				{ color, alignSelf: "flex-start" },
 				type === "display" ? styles.display : undefined,
 				type === "default" ? styles.default : undefined,
 				type === "title" ? styles.title : undefined,
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
 		fontWeight: "600",
 	},
 	title: {
-		fontSize: 32,
-		fontWeight: "bold",
+		fontSize: 22,
+		fontWeight: "400",
 		lineHeight: 32,
 	},
 	subtitle: {
@@ -68,5 +68,6 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		lineHeight: 28.8,
 		fontWeight: "semibold",
+		marginBottom: 8,
 	},
 });
