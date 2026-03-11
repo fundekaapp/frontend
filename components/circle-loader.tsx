@@ -16,6 +16,7 @@ interface Props {
 	stroke: number;
 	progress: number;
 	color: string;
+	timeString: string;
 }
 
 export default function CircularProgress({
@@ -24,6 +25,7 @@ export default function CircularProgress({
 	stroke,
 	progress,
 	color,
+	timeString,
 }: Props) {
 	const size = Math.min(width, height);
 	const radius = (size - stroke) / 2;
@@ -97,7 +99,8 @@ export default function CircularProgress({
 				/>
 			</Canvas>
 			<View style={styles.center}>
-				<ThemedText style={styles.text}>{displayPercentage}%</ThemedText>
+				<ThemedText style={styles.timeText}>{timeString}</ThemedText>
+				<ThemedText style={styles.percentageText}>{displayPercentage}%</ThemedText>
 			</View>
 		</View>
 	);
@@ -116,6 +119,14 @@ const styles = StyleSheet.create({
 	text: {
 		fontSize: 10,
 		alignSelf: "center",
+		fontWeight: "600",
+	},
+	timeText: {
+		fontSize: 48,
+		fontWeight: "bold",
+	},
+	percentageText: {
+		fontSize: 24,
 		fontWeight: "600",
 	},
 });

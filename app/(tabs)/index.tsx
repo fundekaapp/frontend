@@ -1,7 +1,5 @@
 import ActivityCard from "@/components/activity-card";
-import FlashcardDeckCard, {
-	FlashcardDeckCardProps,
-} from "@/components/flashcard-deck-card";
+import DeckCarousel from "@/components/DeckCarousel";
 import Page from "@/components/page";
 import { ThemedText } from "@/components/themed-text";
 import { database } from "@/hooks/useDatabase";
@@ -29,7 +27,8 @@ export default function HomeScreen() {
 		<Page>
 			<ThemedText type='display'>Welcome Back</ThemedText>
 			<ThemedText type='display'>{user}</ThemedText>
-			<ScrollView
+			{flashcardDecks && <DeckCarousel decks={flashcardDecks} />}
+			{/* <ScrollView
 				horizontal
 				style={{
 					overflow: "hidden",
@@ -44,7 +43,7 @@ export default function HomeScreen() {
 						size={y % 2 === 0 ? "large" : "small"} // visual size controlled by width animation
 					/>
 				))}
-			</ScrollView>
+			</ScrollView> */}
 			<ThemedText type='link'>Show all</ThemedText>
 			<ThemedText type='display'>Recent Activities</ThemedText>
 			{/* responsive grid: two items per row when viewport width > 800px */}

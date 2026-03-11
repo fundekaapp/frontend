@@ -9,7 +9,7 @@ type IconMapping = Record<
 	SymbolViewProps["name"],
 	ComponentProps<typeof MaterialIcons>["name"]
 >;
-type IconSymbolName = keyof typeof MAPPING;
+export type IconSymbolName = keyof typeof MAPPING;
 
 /**
  * Add your SF Symbols to Material Icons mappings here.
@@ -17,10 +17,34 @@ type IconSymbolName = keyof typeof MAPPING;
  * - see SF Symbols in the [SF Symbols](https://developer.apple.com/sf-symbols/) app.
  */
 const MAPPING = {
+	// ── Navigation ─────────────────────────────────────────────────────────
 	"house.fill": "home",
 	"book.fill": "book",
 	"chart.bar": "bar-chart",
 	"clock.fill": "access-time",
+
+	// ── Stats ──────────────────────────────────────────────────────────────
+	scope: "my-location", // Accuracy — crosshair precision
+	"square.stack.fill": "layers", // Cards — stacked layers
+	"stopwatch.fill": "timer", // Speed — stopwatch
+
+	// ── Playback buttons ───────────────────────────────────────────────────
+	"play.fill": "play-arrow", // Play
+	"arrow.counterclockwise": "replay", // Reset / Replay
+	"forward.end.fill": "skip-next", // Next / Skip
+	"pause.fill": "pause",
+
+	// ── End-of-deck celebration ────────────────────────────────────────────
+	"party.popper.fill": "celebration", // Confetti moment
+	"star.fill": "star", // Achievement
+	"trophy.fill": "emoji-events", // Trophy
+	"checkmark.seal.fill": "verified", // All done / mastered
+
+	// ── Legacy ─────────────────────────────────────────────────────────────
+	gear: "settings",
+	target: "circle",
+	rectangle: "rectangle",
+	clock: "watch",
 } as IconMapping;
 
 /**

@@ -2,12 +2,15 @@ import { Tabs } from "expo-router";
 import React from "react";
 
 import { HapticTab } from "@/components/haptic-tab";
+import HeaderButton from "@/components/header-button";
 import { TabBar } from "@/components/TabBar";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useThemeColor } from "@/hooks/use-theme-color";
 
 export default function TabLayout() {
 	const colorScheme = useColorScheme();
+	const textColor = useThemeColor({}, "text");
 
 	return (
 		<Tabs
@@ -44,6 +47,13 @@ export default function TabLayout() {
 				options={{
 					title: "Pomodoro",
 					animation: "shift",
+					headerRight: () => (
+						<HeaderButton
+							href='/pomodoro_settings'
+							icon='gear'
+							color={textColor}
+						/>
+					),
 				}}
 			/>
 		</Tabs>
