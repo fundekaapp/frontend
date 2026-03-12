@@ -97,7 +97,12 @@ export default function DeckCarousel({ decks }: DeckCarouselProps) {
 			if (Math.abs(e.translationX) > DRAG_THRESHOLD) {
 				isDragging.value = true;
 			}
-			const next = scrollXStart.value - e.translationX;
+			// Scale translation: full screen swipe (~300px) = 1 card slot (68px)
+			// This makes one deliberate swipe advance exactly one card.
+			const SWIPE_RESISTANCE = 300;
+			const slotWidth = CARD_WIDTHS.small + CARD_GAP;
+			const scaled = (e.translationX / SWIPE_RESISTANCE) * slotWidth;
+			const next = scrollXStart.value - scaled;
 			if (next < 0) {
 				scrollX.value = next * 0.15;
 			} else if (next > maxScroll) {

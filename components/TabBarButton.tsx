@@ -55,7 +55,7 @@ export default function TabBarButton({
 
 	const animatedIconStyle = useAnimatedStyle(() => {
 		const scaleValue = interpolate(scale.value, [0, 1], [1, 1.2]);
-		const top = interpolate(scale.value, [0, 1], [0, 9]);
+		const top = interpolate(scale.value, [0, 1], [0, 10]);
 		return {
 			transform: [{ scale: scaleValue }],
 			top,
@@ -102,12 +102,12 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		gap: 5,
-		paddingVertical: 10, // Keep it balanced
+		paddingVertical: 6, // Keep it balanced
 		paddingHorizontal: 15, // Default width
 	},
 	tabbarItemLarge: {
-		width: 90, // Increase width for square shape on larger screens
-		height: 90, // Keep it proportional
+		width: 36, // Increase width for square shape on larger screens
+		height: 36, // Keep it proportional
 		borderRadius: 15, // Slightly rounded
 	},
 });

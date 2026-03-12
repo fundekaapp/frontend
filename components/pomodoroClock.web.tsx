@@ -1,7 +1,9 @@
+import { useThemeColor } from "@/hooks/use-theme-color";
 import { WithSkiaWeb } from "@shopify/react-native-skia/lib/module/web";
 import { useEffect, useRef } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import type { PomodoroClockProps } from "./pomodoroClock";
+import { ThemedText } from "./themed-text";
 
 /** Format seconds → "MM:SS" */
 function formatTime(seconds: number): string {
@@ -22,7 +24,7 @@ export default function PomodoroClockWeb({
 }: PomodoroClockProps) {
 	const percentage = duration > 0 ? Math.min(elapsed / duration, 1) : 0;
 	const timeRemaining = Math.max(0, duration - elapsed);
-
+	const primary = useThemeColor({}, "primary");
 	// fire onComplete exactly once when session ends
 	const completedRef = useRef(false);
 	useEffect(() => {
@@ -47,10 +49,10 @@ export default function PomodoroClockWeb({
 
 			{/* Centered text overlay — native Views work fine on web */}
 			<View style={styles.overlay} pointerEvents='none'>
-				<Text style={styles.time}>{formatTime(timeRemaining)}</Text>
-				<Text style={styles.session}>
+				<ThemedText style={styles.time}>{formatTime(timeRemaining)}</ThemedText>
+				<ThemedText style={[styles.session, { color: primary }]}>
 					{sessionCurrent} of {sessionTotal}
-				</Text>
+				</ThemedText>
 			</View>
 		</View>
 	);
@@ -73,16 +75,18 @@ const styles = StyleSheet.create({
 		height: 340,
 	},
 	time: {
-		fontFamily: "monospace",
-		fontSize: 48,
+		fontFamily: "Audiowide",
+		alignSelf: "center",
+		fontSize: 64,
 		fontWeight: "700",
 		color: "#FFFFFF",
 		letterSpacing: 2,
+		marginTop: 60,
 	},
 	session: {
 		fontSize: 14,
+		alignSelf: "center",
 		fontWeight: "600",
-		color: "#C8B8E8",
-		marginTop: 4,
+		marginTop: 55,
 	},
 });

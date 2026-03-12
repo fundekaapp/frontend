@@ -1,11 +1,15 @@
 import Button from "@/components/Button";
 import ButtonGroup from "@/components/ButtonGroup";
+import HeaderButton from "@/components/header-button";
+import Page from "@/components/page";
 import PomodoroClock from "@/components/pomodoroClock";
 import PomodoroSettingsModal from "@/components/pomodoroSettingsModal";
-import { IconSymbol } from "@/components/ui/icon-symbol";
+import { ThemedText } from "@/components/themed-text";
 import { PomodoroProvider, usePomodoro } from "@/context/PomodoroContext";
+import { useThemeColor } from "@/hooks/use-theme-color";
+import { Stack } from "expo-router";
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 /** Format seconds → "MM:SS" */
 function formatTime(seconds: number): string {
@@ -32,14 +36,26 @@ function PomodoroScreenInner() {
 
 	const isRunning = running;
 	const [settingsOpen, setSettingsOpen] = useState(false);
-
+	const textColor = useThemeColor({}, "text");
+	const primary = useThemeColor({}, "primary");
+	const onPrimary = useThemeColor({}, "onPrimary");
 	return (
-		<View style={styles.screen}>
+		<Page style={styles.screen}>
+			<Stack.Screen
+				options={{
+					headerRight: () => (
+						<HeaderButton
+							onPress={() => setSettingsOpen(true)}
+							icon='gear'
+							color={textColor}
+						/>
+					),
+				}}
+			/>
 			{/* ── Header ── */}
-			<Pressable onPress={() => setSettingsOpen(true)}>
-				<IconSymbol name='gear' color={"#fff"} />
-			</Pressable>
-			<Text style={styles.title}>{currentSession.label}</Text>
+			<ThemedText type='display' style={styles.sessionLabel}>
+				{currentSession.label}
+			</ThemedText>
 			{settingsOpen && (
 				<PomodoroSettingsModal
 					visible={settingsOpen}
@@ -65,32 +81,40 @@ function PomodoroScreenInner() {
 					size='large'
 					icon={isRunning ? "pause.fill" : "play.fill"}
 					onPress={isRunning ? pause : play}
+					backgroundColor={primary}
+					textColor={onPrimary}
 				/>
 				<Button
 					type='circle'
 					size='large'
 					icon='arrow.counterclockwise'
 					onPress={restart}
+					backgroundColor={primary}
+					textColor={onPrimary}
 				/>
 				<Button
 					type='pill-narrow'
 					size='large'
 					icon='forward.end.fill'
 					onPress={skip}
+					backgroundColor={primary}
+					textColor={onPrimary}
 				/>
 			</ButtonGroup>
 
 			{/* ── Up next ── */}
 			{nextSession && (
 				<View style={styles.upNext}>
-					<Text style={styles.upNextLabel}>Up next</Text>
-					<Text style={styles.upNextTime}>
+					<ThemedText style={styles.upNextLabel}>Up next</ThemedText>
+					<ThemedText style={[styles.upNextTime, { color: primary }]}>
 						{formatTime(nextSession.duration)}
-					</Text>
-					<Text style={styles.upNextSession}>{nextSession.label}</Text>
+					</ThemedText>
+					<ThemedText style={styles.upNextSession}>
+						{nextSession.label}
+					</ThemedText>
 				</View>
 			)}
-		</View>
+		</Page>
 	);
 }
 
@@ -107,9 +131,11 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "flex-start",
-		backgroundColor: "#0D0D0F",
 		gap: 32,
 		position: "relative",
+	},
+	sessionLabel: {
+		alignSelf: "center",
 	},
 	title: {
 		fontSize: 20,
@@ -127,20 +153,22 @@ const styles = StyleSheet.create({
 	},
 	upNextLabel: {
 		fontSize: 12,
+		alignSelf: "center",
 		fontWeight: "500",
-		color: "#6A6A7A",
+		opacity: 0.6,
 		textTransform: "uppercase",
 		letterSpacing: 1,
 	},
 	upNextTime: {
 		fontSize: 22,
-		fontWeight: "700",
-		color: "#C8B8E8",
+		fontFamily: "Audiowide",
+		alignSelf: "center",
 		letterSpacing: 1,
 	},
 	upNextSession: {
+		alignSelf: "center",
+		opacity: 0.6,
 		fontSize: 13,
 		fontWeight: "500",
-		color: "#6A6A7A",
 	},
 });

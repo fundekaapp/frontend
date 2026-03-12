@@ -156,12 +156,17 @@ export default function Button({
 	const shapeStyle = getShapeStyle(type, size);
 	const sizeStyle = styles[`size_${size}` as keyof typeof styles] as ViewStyle;
 
+	// pill-narrow and circle are fixed-dimension icon containers — padding would
+	// push content outside the bounds and clip it (especially on Android).
+	const noPadding = type === "pill-narrow" || type === "circle";
+
 	const baseStyle: ViewStyle = {
 		...styles.base,
 		...sizeStyle,
 		...shapeStyle,
 		backgroundColor: backgroundColor as string,
 		opacity: disabled ? 0.4 : 1,
+		...(noPadding && { paddingHorizontal: 0, paddingVertical: 0 }),
 	};
 
 	return (

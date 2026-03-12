@@ -115,15 +115,16 @@ const styles = StyleSheet.create({
 		shadowOpacity: 1,
 	},
 	bottomBar: {
-		bottom: 50,
+		bottom: 30,
 		width: "90%",
-		height: 90,
+		height: 64,
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
 		marginHorizontal: 25,
 		paddingVertical: 15,
 		borderRadius: 50,
+		paddingBottom: 8,
 	},
 	sidebar: {
 		left: 24,

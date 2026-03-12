@@ -28,22 +28,6 @@ export default function HomeScreen() {
 			<ThemedText type='display'>Welcome Back</ThemedText>
 			<ThemedText type='display'>{user}</ThemedText>
 			{flashcardDecks && <DeckCarousel decks={flashcardDecks} />}
-			{/* <ScrollView
-				horizontal
-				style={{
-					overflow: "hidden",
-					width: "100%",
-					height: 215,
-				}}
-			>
-				{flashcardDecks.map((deck: FlashcardDeckCardProps, y) => (
-					<FlashcardDeckCard
-						key={deck.id}
-						{...deck}
-						size={y % 2 === 0 ? "large" : "small"} // visual size controlled by width animation
-					/>
-				))}
-			</ScrollView> */}
 			<ThemedText type='link'>Show all</ThemedText>
 			<ThemedText type='display'>Recent Activities</ThemedText>
 			{/* responsive grid: two items per row when viewport width > 800px */}
@@ -51,6 +35,7 @@ export default function HomeScreen() {
 				contentContainerStyle={{
 					flexDirection: "row",
 					flexWrap: "wrap",
+					paddingBottom: 50,
 				}}
 				style={{ width: "100%", maxWidth: 800 }}
 				showsVerticalScrollIndicator={width < 800}

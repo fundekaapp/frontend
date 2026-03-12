@@ -1,3 +1,4 @@
+import { useThemeColor } from "@/hooks/use-theme-color";
 import { StyleProp, useWindowDimensions, View, ViewStyle } from "react-native";
 
 export default function Page({
@@ -8,6 +9,7 @@ export default function Page({
 	style?: StyleProp<ViewStyle>;
 }) {
 	const { width, height } = useWindowDimensions();
+	const background = useThemeColor({}, "background");
 
 	return (
 		<View
@@ -20,6 +22,7 @@ export default function Page({
 					paddingTop: width > 800 ? 148 : 16,
 					maxWidth: 1200,
 					position: "relative",
+					backgroundColor: background,
 					width: "100%",
 					alignSelf: "center",
 					minHeight: height,

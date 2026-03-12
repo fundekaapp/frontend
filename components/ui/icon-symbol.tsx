@@ -45,6 +45,12 @@ const MAPPING = {
 	target: "circle",
 	rectangle: "rectangle",
 	clock: "watch",
+
+	// ── Stats Page ─────────────────────────────────────────────────────────────
+	calendar: "calendar-today", // Calendar
+	"chevron.left": "chevron-left", // Back
+	"chevron.right": "chevron-right", // Forward
+	"chart.xyaxis.line": "show-chart",
 } as IconMapping;
 
 /**

@@ -16,6 +16,7 @@ export const Colors = {
 		tertiary: "#904B3C",
 		onSecondary: "#fff",
 		onSurface: "#46464F",
+		surfaceBright: "#FBF8FF",
 		primary: "#5f5791",
 		primaryContainer: "#e5deff",
 		surfaceContainer: "#EFEDF4",
@@ -28,6 +29,7 @@ export const Colors = {
 	},
 	dark: {
 		secondary: "#80D4D5",
+		surfaceBright: "#39393F",
 		tertiary: "#FFB4A4",
 		onSecondary: "#003737",
 		onTertiary: "#561F13",

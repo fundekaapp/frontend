@@ -65,9 +65,10 @@ const styles = StyleSheet.create({
 		color: "#0a7ea4",
 	},
 	display: {
-		fontSize: 24,
+		fontSize: 32,
 		lineHeight: 28.8,
-		fontWeight: "semibold",
+		fontWeight: "bold",
 		marginBottom: 8,
+		marginTop: 18,
 	},
 });

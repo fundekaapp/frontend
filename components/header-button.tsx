@@ -4,14 +4,14 @@ import { Pressable, StyleSheet, View } from "react-native";
 import { IconSymbol } from "./ui/icon-symbol";
 
 type HeaderButtonProps = {
-	href: string; // navigation destination
+	onPress: () => void;
 	icon?: string; // icon name for IconSymbol
 	color?: string;
 	children?: ReactNode; // override content (text/image/etc)
 };
 
 export default function HeaderButton({
-	href,
+	onPress,
 	icon,
 	color,
 	children,
@@ -20,7 +20,7 @@ export default function HeaderButton({
 
 	return (
 		<Pressable
-			onPress={() => router.push(href)}
+			onPress={() => onPress()}
 			style={({ pressed }) => [styles.button, { opacity: pressed ? 0.5 : 1 }]}
 		>
 			<View style={styles.content}>

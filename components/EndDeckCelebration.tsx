@@ -40,7 +40,7 @@ export default function EndDeckCelebration({
 			<View>
 				<ListItem
 					color={primary}
-					icon='target'
+					icon='scope'
 					onColor={onPrimary}
 					title='Accuracy'
 					valueRight={`${accuracy}%`}
@@ -48,7 +48,7 @@ export default function EndDeckCelebration({
 				/>
 				<ListItem
 					color={secondary}
-					icon='rectangle'
+					icon='square.stack.fill'
 					onColor={onSecondary}
 					title='Cards'
 					valueRight={`${cards}`}
@@ -56,7 +56,7 @@ export default function EndDeckCelebration({
 				/>
 				<ListItem
 					color={tertiary}
-					icon='clock'
+					icon='stopwatch.fill'
 					onColor={onTertiary}
 					title='Speed'
 					valueRight={`${speed}`}

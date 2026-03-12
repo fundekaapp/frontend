@@ -1,6 +1,8 @@
 import WavyLoader from "@/components/wavyLoader";
+import { useThemeColor } from "@/hooks/use-theme-color";
 import { useEffect, useRef } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { ThemedText } from "./themed-text";
 
 export interface PomodoroClockProps {
 	/** Total session duration in seconds */
@@ -47,7 +49,7 @@ export function PomodoroClockInner({
 			completedRef.current = false;
 		}
 	}, [elapsed, duration, onComplete]);
-
+	const primary = useThemeColor({}, "primary");
 	return (
 		<View style={styles.container}>
 			{/* Skia canvas sits behind the text overlay */}
@@ -55,8 +57,8 @@ export function PomodoroClockInner({
 
 			{/* Centered text overlay */}
 			<View style={styles.overlay} pointerEvents='none'>
-				<Text style={styles.time}>{formatTime(timeRemaining)}</Text>
-				<Text style={styles.session}>
+				<ThemedText style={styles.time}>{formatTime(timeRemaining)}</ThemedText>
+				<Text style={[styles.session, { color: primary }]}>
 					{sessionCurrent} of {sessionTotal}
 				</Text>
 			</View>
@@ -82,16 +84,15 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	time: {
-		fontFamily: "monospace",
-		fontSize: 48,
-		fontWeight: "700",
-		color: "#FFFFFF",
+		fontFamily: "Audiowide",
+		fontSize: 64,
+		lineHeight: 64,
+		alignSelf: "center",
 		letterSpacing: 2,
 	},
 	session: {
 		fontSize: 14,
 		fontWeight: "600",
-		color: "#C8B8E8",
 		marginTop: 4,
 	},
 });
