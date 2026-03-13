@@ -3,7 +3,12 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { SymbolViewProps, SymbolWeight } from "expo-symbols";
 import { ComponentProps } from "react";
-import { OpaqueColorValue, type StyleProp, type TextStyle } from "react-native";
+import {
+	ColorValue,
+	OpaqueColorValue,
+	type StyleProp,
+	type TextStyle,
+} from "react-native";
 
 type IconMapping = Record<
 	SymbolViewProps["name"],
@@ -51,6 +56,7 @@ const MAPPING = {
 	"chevron.left": "chevron-left", // Back
 	"chevron.right": "chevron-right", // Forward
 	"chart.xyaxis.line": "show-chart",
+	"bolt.fill": "bolt", // Lightning bolt / energy / speed
 } as IconMapping;
 
 /**
@@ -66,7 +72,7 @@ export function IconSymbol({
 }: {
 	name: IconSymbolName;
 	size?: number;
-	color: string | OpaqueColorValue;
+	color: ColorValue | string | OpaqueColorValue;
 	style?: StyleProp<TextStyle>;
 	weight?: SymbolWeight;
 }) {

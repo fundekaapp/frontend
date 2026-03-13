@@ -1,0 +1,20 @@
+name: Deploy to Expo Web
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - run: npx expo install
+      - run: npx expo export --platform web
+      - run: eas deploy

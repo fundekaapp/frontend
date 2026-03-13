@@ -1,12 +1,20 @@
 import { useRouter } from "expo-router";
 import { ReactNode } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
-import { IconSymbol } from "./ui/icon-symbol";
+import {
+	ColorValue,
+	Image,
+	ImageSource,
+	Pressable,
+	StyleSheet,
+	View,
+} from "react-native";
+import { IconSymbol, IconSymbolName } from "./ui/icon-symbol";
 
 type HeaderButtonProps = {
 	onPress: () => void;
-	icon?: string; // icon name for IconSymbol
-	color?: string;
+	icon?: IconSymbolName; // icon name for IconSymbol
+	color?: ColorValue;
+	image?: ImageSource;
 	children?: ReactNode; // override content (text/image/etc)
 };
 
@@ -15,6 +23,7 @@ export default function HeaderButton({
 	icon,
 	color,
 	children,
+	image,
 }: HeaderButtonProps) {
 	const router = useRouter();
 
@@ -28,6 +37,8 @@ export default function HeaderButton({
 					children
 				) : icon ? (
 					<IconSymbol color={color} name={icon} size={24} />
+				) : image ? (
+					<Image style={{ width: 24, height: 24 }} source={image} />
 				) : null}
 			</View>
 		</Pressable>
@@ -36,7 +47,7 @@ export default function HeaderButton({
 
 const styles = StyleSheet.create({
 	button: {
-		marginRight: 16,
+		marginHorizontal: 16,
 	},
 	content: {
 		justifyContent: "center",
